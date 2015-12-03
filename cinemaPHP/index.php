@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <?php 
 $DBName = "cinemaDB";
-$tableName = "film2";
+$tableName = "film";
 $porteMysql = new PDO('mysql:host=localhost;dbname='.$DBName.';charset=utf8', 'root', '');	
 $reponse = $porteMysql->query("SELECT * FROM `$tableName`");
 $reponseTitre = $porteMysql->query("SELECT `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`='cinemadb' AND `TABLE_NAME`='$tableName' ");
@@ -17,7 +17,7 @@ $allTitre = $reponseTitre->fetchAll();
 ?>
 <html>
     <head>
-        <meta http-equiv="refresh" content="2">
+        <!--<meta http-equiv="refresh" content="2">-->
         <meta charset="UTF-8">
         <title>cinemaPHP</title>
         <style>
@@ -47,7 +47,7 @@ $allTitre = $reponseTitre->fetchAll();
             .responsiveTable tr {
                 border: 1px solid black;
             }
-            @media screen and (min-width: 1080px) {
+            @media screen and (min-width: 480px) {
                 .responsiveTable th, .responsiveTable td {
                     border: 1px solid black;
                 }
