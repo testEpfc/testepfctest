@@ -33,6 +33,9 @@ $allTitre = $reponseTitre->fetchAll();
             .responsiveTable td::before {
                 content : attr(data-tab) " : ";
             }
+            .responsiveTable td:first-child { //unique
+                color:yellow;
+            } 
             .responsiveTable th {
                 display:none;
             }
@@ -47,9 +50,6 @@ $allTitre = $reponseTitre->fetchAll();
             .responsiveTable tr {
                 border: 1px solid black;
             }
-            .responsiveTable td:first-child {
-                color:yellow;
-            } 
             @media screen and (min-width: 480px) {
                 .responsiveTable th, .responsiveTable td {
                     border: 1px solid black;
@@ -66,9 +66,6 @@ $allTitre = $reponseTitre->fetchAll();
                 }
                 .responsiveTable tr {
                     border: solid black 1px;
-                } 
-                .responsiveTable td:first-child {
-                    color:yellow;
                 } 
                 .responsiveTable {
                     width: 80%;
