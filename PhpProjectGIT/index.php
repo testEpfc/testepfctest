@@ -13,6 +13,7 @@ and open the template in the editor.
         <?php
         // put your code here
         echo "change 1 ";
+        echo "change 2 ";
         ?>
     </body>
 </html>
