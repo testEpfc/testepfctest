@@ -113,6 +113,11 @@ $allTitre = $reponseTitre->fetchAll();
             </tr>
             <?php } ?>
         </table>
+    <br>
+    <br>
+    <br>
+    <a href="form.php">add another title</a>
+    
             
         <script>
             var thList = document.querySelectorAll(".responsiveTable th");
