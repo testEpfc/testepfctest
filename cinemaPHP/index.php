@@ -17,7 +17,7 @@ $allTitre = $reponseTitre->fetchAll();
 ?>
 <html>
     <head>
-        <!--<meta http-equiv="refresh" content="2">-->
+        <meta http-equiv="refresh" content="2">
         <meta charset="UTF-8">
         <title>cinemaPHP</title>
         <style>
@@ -47,6 +47,9 @@ $allTitre = $reponseTitre->fetchAll();
             .responsiveTable tr {
                 border: 1px solid black;
             }
+            .responsiveTable td:first-child {
+                color:yellow;
+            } 
             @media screen and (min-width: 480px) {
                 .responsiveTable th, .responsiveTable td {
                     border: 1px solid black;
@@ -59,9 +62,13 @@ $allTitre = $reponseTitre->fetchAll();
                 }
                 .responsiveTable th {
                     display: table-cell;
+                    color:yellow;
                 }
                 .responsiveTable tr {
                     border: solid black 1px;
+                } 
+                .responsiveTable td:first-child {
+                    color:yellow;
                 } 
                 .responsiveTable {
                     width: 80%;
