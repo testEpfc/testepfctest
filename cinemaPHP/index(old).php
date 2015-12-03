@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <?php 
 $DBName = "cinemaDB";
-$tableName = "film3";
+$tableName = "film";
 $porteMysql = new PDO('mysql:host=localhost;dbname='.$DBName.';charset=utf8', 'root', '');	
 $reponse = $porteMysql->query("SELECT * FROM `$tableName`");
 $reponseTitre = $porteMysql->query("SELECT `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`='cinemadb' AND `TABLE_NAME`='$tableName' ");
@@ -33,6 +33,9 @@ $allTitre = $reponseTitre->fetchAll();
             .responsiveTable td::before {
                 content : attr(data-tab) " : ";
             }
+            .responsiveTable td:first-child { //unique
+                color:yellow;
+            } 
             .responsiveTable th {
                 display:none;
             }
@@ -47,7 +50,7 @@ $allTitre = $reponseTitre->fetchAll();
             .responsiveTable tr {
                 border: 1px solid black;
             }
-            @media screen and (min-width: 1080px) {
+            @media screen and (min-width: 480px) {
                 .responsiveTable th, .responsiveTable td {
                     border: 1px solid black;
                 }
@@ -59,6 +62,7 @@ $allTitre = $reponseTitre->fetchAll();
                 }
                 .responsiveTable th {
                     display: table-cell;
+                    color:yellow;
                 }
                 .responsiveTable tr {
                     border: solid black 1px;
@@ -73,16 +77,8 @@ $allTitre = $reponseTitre->fetchAll();
     </head>
     <body>
         
-    <!--<li> <?php // echo sizeof($all, 0) ?> </li>-->
-    <!--<li> <?php // echo sizeof($all, 1) ?> </li>-->
-    <!--<li> <?php // echo $sum1 = sizeof($all, 1)-sizeof($all, 0) ?> </li>-->
-    <!--<li> <?php // echo $sum1 ?> </li>-->
     <li> <?php echo "row = ".$row = sizeof($all,0) ?> </li>
-    <!--<li> <?php // echo $sum1/$row  ?> </li>-->
-    <li> <?php echo "column = ".$column = sizeof($all[0], 0)/2 ?> </li>
-    <!--<li> <?php // echo sizeof($all[0], 1) ?> </li>-->
-    <!--<li> <?php // echo sizeof($all[1], 0) ?> </li>-->
-    <!--<li> <?php // echo sizeof($all[1], 1) ?> </li>-->
+    <li> <?php echo "column = ".$column = sizeof($allTitre,0) ?> </li>
             
     <br>
     <br>
@@ -95,7 +91,6 @@ $allTitre = $reponseTitre->fetchAll();
                     <th> <?php echo $allTitre[$j][0] ?> </th>
                 <?php } ?>
             </tr>
-            <?php // for($i=0; $i<sizeof($all);++$i){ ?>
             <?php for($i=0; $i<$row;++$i){ ?>
             <tr>
                 <?php for($j=0; $j<$column;++$j){ ?>
@@ -104,7 +99,6 @@ $allTitre = $reponseTitre->fetchAll();
             </tr>
             <?php } ?>
         </table>
-            
             
         <script>
             var thList = document.querySelectorAll(".responsiveTable th");
@@ -116,9 +110,7 @@ $allTitre = $reponseTitre->fetchAll();
                     tdList[(thList.length*j)+k].setAttribute("data-tab",thList[k].innerHTML);
                 }
             }
-        </script>
-            
-            
+        </script>   
         
     </body>
 </html>
