@@ -5,21 +5,9 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <?php 
-
 $DBName = "cinemaDB";
 $tableName = "film";
-$porteMysql = new PDO('mysql:host=localhost;dbname='.$DBName.';charset=utf8', 'root', '');
-
-$titre = $_REQUEST['titre'];
-$date = $_REQUEST['date'];
-//$titre = 'titre1';
-//$date = 'date1';
-
-//$porteMysql->query("INSERT INTO `cinemadb`.`film` (`id`, `titre`, `annee`) VALUES (NULL, ".$titre.", ".$date.")");
-$porteMysql->query("INSERT INTO `cinemadb`.`film` (`id`, `titre`, `annee`) VALUES (NULL, \"$titre\", \"$date\")");
-//$porteMysql->query("INSERT INTO `cinemadb`.`film` (`id`, `titre`, `annee`) VALUES (NULL, \"titre23\", \"23\")");
-
-	
+$porteMysql = new PDO('mysql:host=localhost;dbname='.$DBName.';charset=utf8', 'root', '');	
 $reponse = $porteMysql->query("SELECT * FROM `$tableName`");
 $reponseTitre = $porteMysql->query("SELECT `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`='cinemadb' AND `TABLE_NAME`='$tableName' ");
 
@@ -33,63 +21,10 @@ $allTitre = $reponseTitre->fetchAll();
         <meta charset="UTF-8">
         <title>cinemaPHP</title>
         <style>
-            .responsiveTable * {
-                padding : 5px;
-            }
-            .responsiveTable th, .responsiveTable td {
-                border: 0px solid black;
-            }
-            .responsiveTable td {
-                display:block;
-            }
-            .responsiveTable td::before {
-                content : attr(data-tab) " : ";
-            }
-            .responsiveTable td:first-child { //unique
-                color:yellow;
-            } 
-            .responsiveTable th {
-                display:none;
-            }
-            .responsiveTable {
-                border-collapse: collapse;
-                width: 95%;
-                margin: auto;
-                text-align: center;
-                color: #ddeedd;
-                background-color: #225522;
-            }
-            .responsiveTable tr {
-                border: 1px solid black;
-            }
-            @media screen and (min-width: 480px) {
-                .responsiveTable th, .responsiveTable td {
-                    border: 1px solid black;
-                }
-                .responsiveTable td {
-                    display:table-cell;
-                }
-                .responsiveTable td::before {
-                    content : none;
-                }
-                .responsiveTable th {
-                    display: table-cell;
-                    color:yellow;
-                }
-                .responsiveTable tr {
-                    border: solid black 1px;
-                } 
-                .responsiveTable {
-                    width: 80%;
-                    margin: auto;
-                    text-align: center;
-                }
-            }
         </style>
+        <link href="responsiverTable.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        
-    
         
     <li> <?php echo "row = ".$row = sizeof($all,0) ?> </li>
     <li> <?php echo "column = ".$column = sizeof($allTitre,0) ?> </li>
@@ -113,11 +48,6 @@ $allTitre = $reponseTitre->fetchAll();
             </tr>
             <?php } ?>
         </table>
-    <br>
-    <br>
-    <br>
-    <a href="form.php">add another title</a>
-    
             
         <script>
             var thList = document.querySelectorAll(".responsiveTable th");

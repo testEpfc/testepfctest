@@ -1,0 +1,62 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 07-déc.-2015, 1:00:08
+    Author     : queni
+*/
+
+.responsiveTable * {
+                padding : 5px;
+            }
+            .responsiveTable th, .responsiveTable td {
+                border: 0px solid black;
+            }
+            .responsiveTable td {
+                display:block;
+            }
+            .responsiveTable td::before {
+                content : attr(data-tab) " : ";
+            }
+            .responsiveTable td:first-child { 
+                color:yellow;
+            }
+            .responsiveTable th {
+                display:none;
+            }
+            .responsiveTable {
+                border-collapse: collapse;
+                width: 95%;
+                margin: auto;
+                text-align: center;
+                color: #ddeedd;
+                background-color: #225522;
+            }
+            .responsiveTable tr {
+                border: 1px solid black;
+            }
+            @media screen and (min-width: 480px) {
+                .responsiveTable th, .responsiveTable td {
+                    border: 1px solid black;
+                }
+                .responsiveTable td {
+                    display:table-cell;
+                }
+                .responsiveTable td::before {
+                    content : none;
+                }
+                .responsiveTable th {
+                    display: table-cell;
+                    color:yellow;
+                }
+                .responsiveTable tr {
+                    border: solid black 1px;
+                } 
+                .responsiveTable {
+                    width: 80%;
+                    margin: auto;
+                    text-align: center;
+                }
+            }

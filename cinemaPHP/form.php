@@ -13,7 +13,7 @@ and open the template in the editor.
     </head>
     <body>
         
-        <form action="affichage.php">
+        <form action="affichagePostInsertion.php.php">
             <input type="text" name="titre" placeholder="le titre a ajouter">
             <!--<input type="number" placeholder="1900">-->
             <input type="number" name="date" placeholder="la date du film">

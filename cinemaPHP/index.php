@@ -13,6 +13,7 @@ and open the template in the editor.
     </head>
     <body>
         <a href="form.php">ajouter titre</a>
+        <a href="affichage.php"> afficher table </a>
         
     </body>
 </html>
