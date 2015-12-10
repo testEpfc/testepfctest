@@ -9,17 +9,32 @@ and open the template in the editor.
 include "DBInfo.php";
 //$DBName = "cinema";
 //$tableName = "film";
+try{
 $porteMysql = new PDO('mysql:host=localhost;dbname='.$DBName.';charset=utf8', 'root', '');
 
 $titre = $_REQUEST['titre'];
 $date = $_REQUEST['date'];
+//$titre = filter_var($titre, FILTER_SANITIZE_STRING);
+//$date = filter_var($date, FILTER_SANITIZE_STRING);
+
 //$titre = 'titre1';
 //$date = 'date1';
-
-//$porteMysql->query("INSERT INTO `cinemadb`.`film` (`id`, `titre`, `annee`) VALUES (NULL, ".$titre.", ".$date.")");
-$porteMysql->query("INSERT INTO `$DBName`.`film` (`id`, `titre`, `annee`) VALUES (NULL, \"$titre\", \"$date\")");
-//$porteMysql->query("INSERT INTO `cinemadb`.`film` (`id`, `titre`, `annee`) VALUES (NULL, \"titre23\", \"23\")");
-
+$errLOG = " ";
+//try{
+    //$porteMysql->query("INSERT INTO `cinemadb`.`film` (`id`, `titre`, `annee`) VALUES (NULL, ".$titre.", ".$date.")");
+    $porteMysql->query("INSERT INTO `$DBName`.`film` (`id`, `titre`, `annee`) VALUES (NULL, \"$titre\", \"$date\")");
+    //$porteMysql->query("INSERT INTO `cinemadb`.`film` (`id`, `titre`, `annee`) VALUES (NULL, \"titre23\", \"23\")");
+ 
+    $errLOG =  "Connection successful ! ";
+}
+catch(PDOException $e)
+{
+    $errLOG =  "Connection failed: " . $e->getMessage();
+}
+catch(Exception $e)
+{
+    $errLOG =  "Connection failed(2) : " . $e->getMessage();
+}
 	
 $reponse = $porteMysql->query("SELECT * FROM `$tableName`");
 $reponseTitre = $porteMysql->query("SELECT `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`='$DBName' AND `TABLE_NAME`='$tableName' ");
@@ -39,6 +54,7 @@ $allTitre = $reponseTitre->fetchAll();
     </head>
     <body>
         
+        <?php echo $errLOG ?>
     
         
     <li> <?php echo "row = ".$row = sizeof($all,0) ?> </li>
@@ -67,7 +83,6 @@ $allTitre = $reponseTitre->fetchAll();
     <br>
     <br>
     <a href="form.php">add another title</a>
-    
             
         <script>
             var thList = document.querySelectorAll(".responsiveTable th");
