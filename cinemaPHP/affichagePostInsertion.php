@@ -6,8 +6,9 @@ and open the template in the editor.
 -->
 <?php 
 
-$DBName = "cinemaDB";
-$tableName = "film";
+include "DBInfo.php";
+//$DBName = "cinema";
+//$tableName = "film";
 $porteMysql = new PDO('mysql:host=localhost;dbname='.$DBName.';charset=utf8', 'root', '');
 
 $titre = $_REQUEST['titre'];
@@ -16,12 +17,12 @@ $date = $_REQUEST['date'];
 //$date = 'date1';
 
 //$porteMysql->query("INSERT INTO `cinemadb`.`film` (`id`, `titre`, `annee`) VALUES (NULL, ".$titre.", ".$date.")");
-$porteMysql->query("INSERT INTO `cinemadb`.`film` (`id`, `titre`, `annee`) VALUES (NULL, \"$titre\", \"$date\")");
+$porteMysql->query("INSERT INTO `$DBName`.`film` (`id`, `titre`, `annee`) VALUES (NULL, \"$titre\", \"$date\")");
 //$porteMysql->query("INSERT INTO `cinemadb`.`film` (`id`, `titre`, `annee`) VALUES (NULL, \"titre23\", \"23\")");
 
 	
 $reponse = $porteMysql->query("SELECT * FROM `$tableName`");
-$reponseTitre = $porteMysql->query("SELECT `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`='cinemadb' AND `TABLE_NAME`='$tableName' ");
+$reponseTitre = $porteMysql->query("SELECT `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`='$DBName' AND `TABLE_NAME`='$tableName' ");
 
 $all = $reponse->fetchAll();
 $allTitre = $reponseTitre->fetchAll();

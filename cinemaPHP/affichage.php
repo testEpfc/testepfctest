@@ -5,11 +5,13 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <?php 
-$DBName = "cinemaDB";
-$tableName = "film";
+
+include "DBInfo.php";
+//$DBName = "cinema";
+//$tableName = "film";
 $porteMysql = new PDO('mysql:host=localhost;dbname='.$DBName.';charset=utf8', 'root', '');	
 $reponse = $porteMysql->query("SELECT * FROM `$tableName`");
-$reponseTitre = $porteMysql->query("SELECT `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`='cinemadb' AND `TABLE_NAME`='$tableName' ");
+$reponseTitre = $porteMysql->query("SELECT `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`='$DBName' AND `TABLE_NAME`='$tableName' ");
 
 $all = $reponse->fetchAll();
 $allTitre = $reponseTitre->fetchAll();
