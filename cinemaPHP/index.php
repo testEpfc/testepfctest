@@ -16,6 +16,9 @@ and open the template in the editor.
         <br>
         <a href="affichage.php"> afficher table </a>
         
+        <?php 
+            echo "";
+        ?>
         
     </body>
 </html>
